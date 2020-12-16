@@ -1,0 +1,523 @@
+{
+	"info": {
+		"_postman_id": "c145d839-0cf8-4d1d-a01c-ef5360a13ff5",
+		"name": "FreshBooks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authorizing with OAuth2",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "redirect_uri",
+							"value": "https://testleaf.com/contact/",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "https://my.freshbooks.com/service/auth/oauth/authorize",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://my.freshbooks.com/service/auth/oauth/authorize",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "9a20aef118dd34e770384049567ae07a6fb966ea40ca2b6863b49dd653910913",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "59ff6064c596206d94251c43f02f2977f90a7c191e75b1399aa7fd6fbdf3c947",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "freshbooks",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "challengeAlgorithm",
+							"value": "S256",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "queryParams",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "state",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"grant_type\": \"authorization_code\",\r\n  \"client_id\": \"59ff6064c596206d94251c43f02f2977f90a7c191e75b1399aa7fd6fbdf3c947\",\r\n  \"code\": \"7e4bcc74893faebb8497c63dcb1a4b04bdfca5e51b40fe4e4e076d9198505a0f\",\r\n  \"client_secret\": \"9a20aef118dd34e770384049567ae07a6fb966ea40ca2b6863b49dd653910913\",\r\n  \"redirect_uri\": \"https://testleaf.com/contact/\"\r\n}"
+				},
+				"url": {
+					"raw": "https://api.freshbooks.com/auth/oauth/token",
+					"protocol": "https",
+					"host": [
+						"api",
+						"freshbooks",
+						"com"
+					],
+					"path": [
+						"auth",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Business",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer b31d9f2e22d7f7d2db75c486dd9f376cbbefc73b41b3998eec073acec695c614",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Kevin's Corral\",\r\n    \"date_format\": \"mm/dd/yyyy\",\r\n    \"address_attributes\": {\r\n        \"country\": \"Canada\"\r\n    },\r\n    \"phone_number_attributes\": null\r\n}"
+				},
+				"url": {
+					"raw": "https://api.freshbooks.com/auth/api/v1/users/business",
+					"protocol": "https",
+					"host": [
+						"api",
+						"freshbooks",
+						"com"
+					],
+					"path": [
+						"auth",
+						"api",
+						"v1",
+						"users",
+						"business"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Client",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer b31d9f2e22d7f7d2db75c486dd9f376cbbefc73b41b3998eec073acec695c614"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"client\": {\r\n        \"fname\": \"first1\",\r\n        \"lname\": \"last1\",\r\n        \"email\": \"email1@freshbooks.com\",\r\n        \"organization\": \"company1\",\r\n        \"vat_name\": null,\r\n        \"vat_number\": \"\",\r\n        \"status\": null,\r\n        \"note\": null,\r\n        \"home_phone\": null,\r\n        \"userid\": null,\r\n        \"source\": null,\r\n        \"highlight_string\": null,\r\n        \"p_street\": \"1655 Dupont St. W.\",\r\n        \"p_street2\": null,\r\n        \"p_city\": \"Toronto\",\r\n        \"p_country\": \"Canada\",\r\n        \"p_province\": \"Ontario\",\r\n        \"p_code\": \"M6P 3T1\",\r\n        \"currency_code\": \"USD\",\r\n        \"language\": \"en\",\r\n        \"last_activity\": null,\r\n        \"face\": null,\r\n        \"late_fee\": null,\r\n        \"late_reminders\": [],\r\n        \"contacts\": [\r\n            {\r\n                \"email\": \"email+2@freshbooks.com\",\r\n                \"fname\": \"first2\",\r\n                \"lname\": \"last2\",\r\n                \"phone1\": null,\r\n                \"userid\": null,\r\n                \"face\": null\r\n            },\r\n            {\r\n                \"email\": \"email+3@freshbooks.com\",\r\n                \"fname\": \"first3\",\r\n                \"lname\": \"last3\",\r\n                \"phone1\": null,\r\n                \"userid\": null,\r\n                \"face\": null\r\n            }\r\n        ]\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "https://api.freshbooks.com/accounting/account/eOJRP1/users/clients",
+					"protocol": "https",
+					"host": [
+						"api",
+						"freshbooks",
+						"com"
+					],
+					"path": [
+						"accounting",
+						"account",
+						"eOJRP1",
+						"users",
+						"clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Single Project",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer b31d9f2e22d7f7d2db75c486dd9f376cbbefc73b41b3998eec073acec695c614",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"project\": {\r\n    \"title\": \"Titikaka Hiking Guide\",\r\n    \"client_id\": 17947,\r\n    \"project_type\": \"fixed_price\",\r\n    \"fixed_price\": \"3000\",\r\n    \"due_date\": \"2019-04-18\"\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "https://api.freshbooks.com/projects/business/6892275/projects",
+					"protocol": "https",
+					"host": [
+						"api",
+						"freshbooks",
+						"com"
+					],
+					"path": [
+						"projects",
+						"business",
+						"6892275",
+						"projects"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Time Entry",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer b31d9f2e22d7f7d2db75c486dd9f376cbbefc73b41b3998eec073acec695c614",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"time_entry\": {\r\n        \"is_logged\": true,\r\n        \"duration\": 7200,\r\n        \"note\": \"Stuff\",\r\n        \"started_at\": \"2016-08-16T20:00:00.000Z\",\r\n        \"client_id\": \"17947\",\r\n        \"project_id\": \"6660335\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "https://api.freshbooks.com/timetracking/business/6892275/time_entries",
+					"protocol": "https",
+					"host": [
+						"api",
+						"freshbooks",
+						"com"
+					],
+					"path": [
+						"timetracking",
+						"business",
+						"6892275",
+						"time_entries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all the Time Entry and Verify the newly created Time Entry in the list",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer b31d9f2e22d7f7d2db75c486dd9f376cbbefc73b41b3998eec073acec695c614"
+					}
+				],
+				"url": {
+					"raw": "https://api.freshbooks.com/timetracking/business/6892275/time_entries",
+					"protocol": "https",
+					"host": [
+						"api",
+						"freshbooks",
+						"com"
+					],
+					"path": [
+						"timetracking",
+						"business",
+						"6892275",
+						"time_entries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update the new Time Entry",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer b31d9f2e22d7f7d2db75c486dd9f376cbbefc73b41b3998eec073acec695c614"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"time_entry\": {\r\n      \"is_logged\": true,\r\n      \"duration\": 600,\r\n      \"note\": \"Updated Note\",\r\n      \"started_at\": \"2016-08-16T18:03:28.000Z\",\r\n      \"timer\": {\r\n          \"id\": \"120806539\"\r\n      },\r\n      \"client_id\": 17947,\r\n      \"project_id\": 6660335\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "https://api.freshbooks.com/timetracking/business/6892275/time_entries/120806539",
+					"protocol": "https",
+					"host": [
+						"api",
+						"freshbooks",
+						"com"
+					],
+					"path": [
+						"timetracking",
+						"business",
+						"6892275",
+						"time_entries",
+						"120806539"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete the newly created Entry",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer fd6fd92f97568d3f5cce9b5536504b26f33260b0d43af3ddde607cd6b3b9a852"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://api.freshbooks.com/timetracking/business/6892275/time_entries/120806539",
+					"protocol": "https",
+					"host": [
+						"api",
+						"freshbooks",
+						"com"
+					],
+					"path": [
+						"timetracking",
+						"business",
+						"6892275",
+						"time_entries",
+						"120806539"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create single estimate with single line",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer b31d9f2e22d7f7d2db75c486dd9f376cbbefc73b41b3998eec073acec695c614"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"estimate\": {\r\n    \"email\": \"sailormoon@freshbooks.com\",\r\n    \"customerid\": 17947,\r\n    \"create_date\": \"2019-04-20\",\r\n    \"presentation\": {\r\n    \t\"theme_primary_color\": \"#4f697a\",\r\n    \t\"image_logo_src\": \"/service/uploads/images/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50IjoyMTAxMTkzLCJvcmlnaW5hbF9maWxlbmFtZSI6IkZyZXNoQm9va3MtTG9nbyAoMikucG5nIiwiYnVja2V0IjoidXBsb2FkcyIsImZpbGVuYW1lIjoidXBsb2FkLWEyY2QxMmFmZTc0MWQ1MGMwOGMyNmUyNDRhMmQzOWJkZTE2ZDY5OGMiLCJsZW5ndGgiOjg4MjQsImtleSI6Iidkb2NzLSctMjEwMTE5My91cGxvYWQtYTJjZDEyYWZlNzQxZDUwYzA4YzI2ZTI0NGEyZDM5YmRlMTZkNjk4YyJ9.vskvajegEwrVGx7v9qUZEmxWYvlwRjYqCUCKW0i7nds\"\r\n    },\r\n    \"lines\": [\r\n      {\r\n        \"type\": 0,\r\n        \"description\": \"\",\r\n        \"taxName1\": \"\",\r\n        \"taxAmount1\": 0,\r\n        \"name\": \"Paperwork\",\r\n        \"qty\": 1,\r\n        \"taxName2\": \"\",\r\n        \"taxAmount2\": 0,\r\n        \"unit_cost\": {\r\n            \"amount\": \"5000.00\",\r\n            \"code\": \"USD\"\r\n        }\r\n      },\r\n      {\r\n        \"type\": 0,\r\n        \"description\": \"\",\r\n        \"expenseid\": 2652,\r\n        \"taxName1\": \"\",\r\n        \"taxAmount1\": 0,\r\n        \"name\": \"Air Canada\",\r\n        \"qty\": 1,\r\n        \"taxName2\": \"\",\r\n        \"taxAmount2\": 0,\r\n        \"unit_cost\": {\r\n            \"amount\": \"3000.00\",\r\n            \"code\": \"USD\"\r\n        }\r\n      }\r\n    ]\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "https://api.freshbooks.com/accounting/account/eOJRP1/estimates/estimates",
+					"protocol": "https",
+					"host": [
+						"api",
+						"freshbooks",
+						"com"
+					],
+					"path": [
+						"accounting",
+						"account",
+						"eOJRP1",
+						"estimates",
+						"estimates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update the newly created estimate",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer b31d9f2e22d7f7d2db75c486dd9f376cbbefc73b41b3998eec073acec695c614"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"estimate\": {\r\n    \"customerid\": 17947,\r\n    \"create_date\": \"2019-04-20\"\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "https://api.freshbooks.com/accounting/account/eOJRP1/estimates/estimates/507",
+					"protocol": "https",
+					"host": [
+						"api",
+						"freshbooks",
+						"com"
+					],
+					"path": [
+						"accounting",
+						"account",
+						"eOJRP1",
+						"estimates",
+						"estimates",
+						"507"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get the estimate and verify the change detail",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer b31d9f2e22d7f7d2db75c486dd9f376cbbefc73b41b3998eec073acec695c614"
+					}
+				],
+				"url": {
+					"raw": "https://api.freshbooks.com/accounting/account/eOJRP1/estimates/estimates/507",
+					"protocol": "https",
+					"host": [
+						"api",
+						"freshbooks",
+						"com"
+					],
+					"path": [
+						"accounting",
+						"account",
+						"eOJRP1",
+						"estimates",
+						"estimates",
+						"507"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
